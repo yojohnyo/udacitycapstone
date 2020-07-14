@@ -1,0 +1,23 @@
+.input-form {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.holder {
+  margin: 12px;
+}
+
+.location {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+}
+
+.start-date {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: row2-start;
+  grid-row-end: 3;
+}
