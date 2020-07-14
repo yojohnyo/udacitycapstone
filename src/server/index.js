@@ -41,13 +41,13 @@ function sendData (request, response) {
 
 
 function getZip(req, res) {
-    newEntry = {
-        zip: req.body.zip,
-        date: req.body.date,
-        temp: req.body.temp,
-        note: req.body.note
+    cityData = {
+        city: req.body.zip,
+        adminName1: req.body.placeNames.adminName1,
+        latitude: req.body.placeNames.lat,
+        longitude: req.body.placeNames.lng
     }
-    postData.push()
-    postData.push(req.body);
-    console.log(req.body);
+    // postData.push()
+    postData.push(cityData);
+    console.log(cityData);
 }
