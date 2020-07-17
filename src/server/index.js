@@ -1,5 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const weatherAPI = process.env.WEATHERBITKEY;
+
 var path = require('path')
 
 const express = require('express')
@@ -31,6 +33,9 @@ app.post('/formData', getZip);
 
 // // GET route
 app.get('/all', sendData);
+
+// Get for API Key
+// app.get('/weatherkey', weatherAPI);
 
 function sendData (request, response) {
     console.log("In post data");
