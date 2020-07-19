@@ -47,10 +47,12 @@ function sendData (request, response) {
 
 function getZip(req, res) {
     cityData = {
-        city: req.body.zip,
-        adminName1: req.body.placeNames.adminName1,
-        latitude: req.body.placeNames.lat,
-        longitude: req.body.placeNames.lng
+        city: req.body.tripInformation.locationInfo.name,
+        adminName1: req.body.tripInformation.locationInfo.adminName1,
+        latitude: req.body.tripInformation.locationInfo.lat,
+        longitude: req.body.tripInformation.locationInfo.lng,
+        tripDate: req.body.tripInformation.tripDate,
+        weatherInfo: req.body.tripInformation.weatherInfo
     }
     // postData.push()
     postData.push(cityData);
