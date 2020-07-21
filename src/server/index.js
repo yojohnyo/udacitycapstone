@@ -52,7 +52,8 @@ function getZip(req, res) {
         latitude: req.body.tripInformation.locationInfo.lat,
         longitude: req.body.tripInformation.locationInfo.lng,
         tripDate: req.body.tripInformation.tripDate,
-        weatherInfo: req.body.tripInformation.weatherInfo
+        weatherInfo: req.body.tripInformation.weatherInfo,
+        photoURL: req.body.tripInformation.photoURL
     }
     // postData.push()
     postData.push(cityData);

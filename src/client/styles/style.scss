@@ -6,8 +6,9 @@ body{
 #app{
     display: grid;
     grid-auto-rows: minmax(50px, auto);
+    grid-template-columns: 10% 35% 10% 35% 10%;
     /* grid-template-columns:  */
-    height:100vh;
+    //height:100vh;
     background: cornflowerblue;
     color: #f0d43a;
     justify-content: center;
@@ -46,9 +47,14 @@ body{
 
 .headline {
     font-size: 40px;
+    grid-column-start: 2;
+    grid-column-end: 3;
 
 }
 .title{
+    display: block;
+    font-size: 30px;
+    color: #3b4a6b;
 
 }
 
@@ -78,6 +84,7 @@ button{
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+
 }
 h1{
     font-size: 36px;

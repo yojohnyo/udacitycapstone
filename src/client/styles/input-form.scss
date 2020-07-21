@@ -1,6 +1,10 @@
 .input-form {
   display: flex;
   flex-direction: row;
+  grid-row-start: 3;
+  grid-column-end: 5;
+  grid-column-start: 2;
+
 
 }
 
@@ -20,4 +24,32 @@
   grid-column-end: 5;
   grid-row-start: row2-start;
   grid-row-end: 3;
+}
+
+.tripdata {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-column-end: 5;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+
+}
+
+#entryHolder {
+  display: block;
+  margin: 2em;
+}
+
+#photoHolder {
+  grid-column-start: 4;
+  grid-row-start: 2;
+  grid-column-end: 5;
+  margin: 2em;
+}
+
+.feel {
+  grid-row-start: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
