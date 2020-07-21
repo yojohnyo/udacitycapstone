@@ -1,5 +1,5 @@
 /* Global Variables */
-
+const fetch = require("node-fetch");
 
 
 const timeToTrip = (tripStartDate) => {
@@ -17,7 +17,9 @@ let apiKey = "&username=yojohnyo";
 
 /* Event listener for Generate Click */
 const generateButton = document.getElementById('generate');
-generateButton.addEventListener('click', action);
+if (generateButton) {
+    generateButton.addEventListener('click', action);
+}
 
 /*Event listener for enter key */
 document.addEventListener('keyup', function (e) {
@@ -65,11 +67,13 @@ function weatherCallback(weatherBaseUrl, cityData, key, daysToTrip) {
 const getWeather = async ( baseURL, cityData, key, daysToTrip) => {
     const lat = cityData.lat;
     const lon = cityData.lng;
+    console.log(`${baseURL}lat=${lat}&lon=${lon}&key=${key}&units=I`);
     const response = await fetch(`${baseURL}lat=${lat}&lon=${lon}&key=${key}&units=I`)
     try {
         const weatherData = await response.json();
         const weatherInfo = weatherData.data[0];
         const currentTemperature = weatherInfo.app_temp;
+        console.log(currentTemperature);
         const returnObject = {'locationInfo': cityData, 'weatherInfo': weatherInfo, 'tripDate': document.getElementById('start-date').value}
         return returnObject;
     }catch(error) {
@@ -166,3 +170,6 @@ export {postData}
 export {getCity}
 export {action}
 export {generateButton}
+export {timeToTrip}
+export {getWeather}
+export {getPhoto}
