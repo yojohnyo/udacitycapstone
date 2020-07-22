@@ -1,17 +1,17 @@
-# Weather-Journal App Project
+# Udacity Travel Planner capstone project
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+This project involved pulling data from multiple sources to collect geographical, weather, and photo information about 
+a selected selected city.
 
 ## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+Runing webpack
+There are three instances related to webpack:
 
-## Installing with npm
-Once you have node installed on your machine, you'll need few extra packages.  To install them from the project root, use these commands:
+1. The dev environment which can be built with npm run build-dev
+1. The production environment which can be build with npm run build-prod
+1. The test environment which can be run with npm run test
 
+To start the server, use npm start
 
-```npm install express```
-
-```npm install cors```
-
-```npm install body-parser```
+This site runs on port 5000 so once you start the server, you need to go to http://localhost:5000
