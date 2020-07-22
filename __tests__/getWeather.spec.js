@@ -13,7 +13,6 @@ test("Get Current Weather for Chicago", async (done) => {
 
     document.getElementById('start-date').value = '2020-08-08'
     const response = await getWeather(url, cityData, key, 15)
-    console.log(response);
     expect(response.weatherInfo.temp).toBeGreaterThan(-20)
     expect(response.weatherInfo.temp).toBeLessThan(110)
     done();

@@ -44,15 +44,19 @@ function action(event) {
     const endDateFormat = `${month}-${endDay}`
     console.log(endDateFormat);
     const daysToTrip = timeToTrip(startDate);
-    const endPoint = daysToTrip < 10 ? 'current?' :
-        `normals?start_day=${startDateObject.getMonth()+1}-${startDateObject.getDate()+1}&end_day=${endDateFormat}&`;
-    console.log(endPoint);
-    const note = document.getElementById('feelings');
-    getCity(baseURL, apiKey, encodeURIComponent(zip.value))
-        .then(function (cityData) {
-            const key = '73a9328c1fd5491c9c60fc3e8349f22a';
-            weatherCallback(`https://api.weatherbit.io/v2.0/${endPoint}`, cityData.geonames[0], key, daysToTrip)
-        })
+    if (daysToTrip > 0) {
+        const endPoint = daysToTrip < 10 ? 'current?' :
+            `normals?start_day=${startDateObject.getMonth() + 1}-${startDateObject.getDate() + 1}&end_day=${endDateFormat}&`;
+        console.log(endPoint);
+        const note = document.getElementById('feelings');
+        getCity(baseURL, apiKey, encodeURIComponent(zip.value))
+            .then(function (cityData) {
+                const key = '73a9328c1fd5491c9c60fc3e8349f22a';
+                weatherCallback(`https://api.weatherbit.io/v2.0/${endPoint}`, cityData.geonames[0], key, daysToTrip)
+            });
+    } else {
+        document.getElementById('city').innerText = `Please enter a date in the future`;
+    }
 }
 
 function weatherCallback(weatherBaseUrl, cityData, key, daysToTrip) {
@@ -74,7 +78,7 @@ const getWeather = async ( baseURL, cityData, key, daysToTrip) => {
         const weatherInfo = weatherData.data[0];
         const currentTemperature = weatherInfo.app_temp;
         console.log(currentTemperature);
-        const returnObject = {'locationInfo': cityData, 'weatherInfo': weatherInfo, 'tripDate': document.getElementById('start-date').value}
+        const returnObject = {'locationInfo': cityData, 'weatherInfo': weatherInfo}
         return returnObject;
     }catch(error) {
         console.log("error");
@@ -122,6 +126,9 @@ const getCity = async ( baseURL, key, zip) => {
 
 /* Function to POST data to server */
 const postData = async ( url = '', data = {})=>{
+    data.tripInformation.tripDate = document.getElementById('start-date').value;
+    data.tripInformation.tripEndDate = document.getElementById('end-date').value;
+    console.log(data);
     const response = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         credentials: 'same-origin', // include, *same-origin, omit
@@ -146,16 +153,17 @@ const updateUI = async () => {
     try{
         const allData = await request.json();
         let recentEntry = allData.pop();
-        document.getElementById('response').style.display = "flex";
+        // document.getElementById('response').style.display = "default";
         document.getElementById('city').innerText = `Destination: ${recentEntry.city}, ${recentEntry.adminName1}`;
-        document.getElementById('date').innerText = `Trip start date: ${recentEntry.tripDate}`;
-        if (recentEntry.tripDate < 10){
+        document.getElementById('date').innerText = `Trip date(s): ${recentEntry.tripDate} - ${recentEntry.tripEndDate}`;
+        if (timeToTrip(recentEntry.tripDate) < 10){
             document.getElementById('temp').innerText = `The current temperature is ${recentEntry.weatherInfo.temp} (F)`
         } else {
             document.getElementById('temp').innerText = `The normal high temperature during your trip is ${recentEntry.weatherInfo.temp} (F)`
         }
         console.log(document.getElementById('imgURL').innerText);
         document.getElementById('imgURL').src = recentEntry.photoURL;
+        console.log(recentEntry.tripDate);
         document.getElementById('ttt').innerText = `Your trip is in ${timeToTrip(recentEntry.tripDate)} Days`;
         // document.getElementById('content').innerText = `Note: ${recentEntry.note}`;
         console.log(allData.pop());
