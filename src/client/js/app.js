@@ -8,6 +8,12 @@ const timeToTrip = (tripStartDate) => {
     return Math.ceil((tripStart.getTime()-today.getTime())/(1000*24*3600));
 }
 
+const tripDuration = (tripStartDate, tripEndDate) => {
+    const tripStart = new Date(tripStartDate);
+    const endDate = new Date(tripEndDate);
+    return Math.ceil((tripStart.getTime()-endDate.getTime())/(1000*24*3600));
+}
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -171,6 +177,7 @@ const updateUI = async () => {
         // document.getElementById('response').style.display = "default";
         document.getElementById('city').innerText = `Destination: ${recentEntry.city}, ${recentEntry.adminName1}`;
         document.getElementById('date').innerText = `Trip date(s): ${recentEntry.tripDate} - ${recentEntry.tripEndDate}`;
+        document.getElementById('duration').innerText = `Trip duration: ${tripDuration(recentEntry.tripEndDate, recentEntry.tripDate)} days`;
         if (timeToTrip(recentEntry.tripDate) < 10){
             document.getElementById('temp').innerText = `The current temperature is ${recentEntry.weatherInfo.temp} (F)`
         } else {

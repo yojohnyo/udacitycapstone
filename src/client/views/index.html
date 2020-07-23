@@ -18,6 +18,7 @@
         <div id="entryHolder">
             <div id="city"></div>
             <div id="date"></div>
+            <div id="duration"></div>
             <div id="temp"></div>
             <div id="ttt"></div>
             <div id="content"></div>
@@ -45,14 +46,14 @@
     </div>
 
 </div>
-<!--<script>-->
-<!--    // Check that service workers are supported-->
-<!--    if ('serviceWorker' in navigator) {-->
-<!--        // Use the window load event to keep the page load performant-->
-<!--        window.addEventListener('load', () => {-->
-<!--            navigator.serviceWorker.register('/service-worker.js');-->
-<!--        });-->
-<!--    }-->
-<!--</script>-->
+<script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
 </body>
 </html>
