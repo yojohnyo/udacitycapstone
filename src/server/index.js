@@ -11,6 +11,8 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const keys = {'weatherbitkey': process.env.WEATHERBITKEY, 'pixabaykey': process.env.PIXABAYKEY};
+
 // Initialize the main project folder
 app.use(express.static('dist'));
 
@@ -33,6 +35,7 @@ app.post('/formData', getZip);
 
 // // GET route
 app.get('/all', sendData);
+app.get('/getkeys', getKey)
 
 // Get for API Key
 // app.get('/weatherkey', weatherAPI);
@@ -42,6 +45,11 @@ function sendData (request, response) {
     console.log(postData);
     response.send(postData);
 };
+
+function getKey(request, response) {
+    response.send(keys);
+    console.log(keys)
+}
 
 
 
