@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/include.css">
-    <link rel="stylesheet" href="/styles/input-form.css">
 </head>
 <body>
 <div id="app">
@@ -21,24 +19,23 @@
             <div id="duration"></div>
             <div id="temp"></div>
             <div id="ttt"></div>
-            <div id="content"></div>
         </div>
         <div id="photoHolder">
-            <div id="image"><img id="imgURL" src=""> </div>
+            <div id="image"><img id="imgURL" src=""></div>
         </div>
     </div>
     <div class=" holder input-form">
         <div class="holder location">
             <label for="location">Enter the location of your trip</label>
-            <input type="text" id="location" placeholder="Enter the location">
+            <input type="text" id="location" placeholder="Enter the location" required>
         </div>
         <div class="holder start-date">
             <label for="start-date">Enter the start date of your trip</label>
-            <input type="date" id="start-date" placeholder="Enter the start date">
+            <input type="date" id="start-date" placeholder="Enter the start date" required>
         </div>
         <div class="holder end-date">
             <label for="end-date">Enter the end date of your trip</label>
-            <input type="date" id="end-date" placeholder="Enter the end date">
+            <input type="date" id="end-date" placeholder="Enter the end date" required>
         </div>
     </div>
     <div class="holder feel">

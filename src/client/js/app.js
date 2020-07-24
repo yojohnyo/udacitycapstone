@@ -20,10 +20,11 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 
 /* Event listener for Generate Click */
-const generateButton = document.getElementById('generate');
-if (generateButton) {
+document.addEventListener('DOMContentLoaded', (event) => {
+    const generateButton = document.getElementById('generate');
     generateButton.addEventListener('click', action);
-}
+});
+
 
 //Get keys from server
 const getKeys = async () => {
@@ -100,7 +101,6 @@ const getWeather = async ( baseURL, cityData, key, daysToTrip) => {
         const weatherData = await response.json();
         const weatherInfo = weatherData.data[0];
         const currentTemperature = weatherInfo.app_temp;
-        console.log(cityData);
         const returnObject = {'locationInfo': cityData, 'key':key, 'weatherInfo': weatherInfo}
         return returnObject;
     }catch(error) {
@@ -120,7 +120,7 @@ function pixCallBack(data) {
 }
 
 const getPhoto = async (baseURL, city, key) => {
-    const response = await fetch(`${baseURL}key=${key}&q=${city}&image_type=photo`)
+    const response = await fetch(`${baseURL}key=${key}&q=${city}&&category=places&image_type=photo`)
     try {
         const photoData = await response.json();
         const photoURL = photoData.hits[0].webformatURL;
@@ -187,7 +187,6 @@ const updateUI = async () => {
         document.getElementById('imgURL').src = recentEntry.photoURL;
         console.log(recentEntry.tripDate);
         document.getElementById('ttt').innerText = `Your trip is in ${timeToTrip(recentEntry.tripDate)} Days`;
-        // document.getElementById('content').innerText = `Note: ${recentEntry.note}`;
         console.log(allData.pop());
     } catch (e) {
         console.log("error".endsWith());
@@ -199,7 +198,6 @@ export {updateUI}
 export {postData}
 export {getCity}
 export {action}
-export {generateButton}
 export {timeToTrip}
 export {getWeather}
 export {getPhoto}
